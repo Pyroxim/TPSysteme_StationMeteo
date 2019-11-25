@@ -1,0 +1,35 @@
+//---------------------------------------------------------------------------
+#pragma hdrstop
+
+#include <fmx.h>
+#include "VEL9111.h"
+
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+
+VEL9111::VEL9111()
+{
+
+}
+
+VEL9111::~VEL9111()
+{
+
+}
+
+int VEL9111::Initialisation()
+{
+	IDCarte = Register_Card(PCI_9111DG, 0);
+
+    AI_9111_Config(this->IDCarte, TRIG_INT_PACER, P9111_TRGMOD_SOFT, 0);
+	AO_9111_Config(this->IDCarte, P9111_AO_UNIPOLAR);
+
+	return this->IDCarte;
+}
+
+float VEL9111::Acquisition()
+{
+	AI_ReadChannel(this->IDCarte,3 , AD_B_10_V, &this->Valeur);
+
+	return this->Valeur;
+}
