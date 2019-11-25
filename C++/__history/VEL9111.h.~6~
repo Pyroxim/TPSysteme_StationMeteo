@@ -1,0 +1,22 @@
+//---------------------------------------------------------------------------
+#ifndef VEL9111H
+#define VEL9111H
+//---------------------------------------------------------------------------
+#include <tchar.h>
+#include "dask.h"
+//---------------------------------------------------------------------------
+class VEL9111
+{
+	I16 IDCarte;
+	F64 Valeur;
+
+	public :
+		VEL9111();
+		~VEL9111();
+
+		int Initialisation();
+		float AcquisitionTemp();
+		float AcquisitionHumid();
+};
+
+#endif
